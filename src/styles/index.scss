@@ -1,0 +1,27 @@
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css);
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
+
+*{
+  font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif', 'Noto Sans', serif;
+    outline: none !important;
+    transition: color 0.5, background 0.5;
+}
+html {
+    overflow: hidden;
+  }
+h1,h2,h3,h4,h5,h6{
+  margin:0px;
+}
+body{
+    margin:0;
+}
+ul{
+  list-style:none;
+  margin:0px;
+  padding:0px;
+}
+a {
+    cursor: pointer;
+    text-decoration: none;
+  }

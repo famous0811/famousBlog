@@ -1,12 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import './Resources/resources';
+import "./styles/index.scss";
+import {Provider} from 'mobx-react';
+
+//store
+import Darkmodestore from './stores/Darkmode';
+import LanguageStore from './stores/language';
+
+const darkmode=new Darkmodestore();
+const language = new LanguageStore();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider darkmode={darkmode} language={language}>
+    <App/>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
