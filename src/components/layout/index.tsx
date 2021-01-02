@@ -42,6 +42,7 @@ ${(props) =>
 `;
 const Wrap = styled.div`
 &>article{
+  height: calc(100vh - 108px);
   margin-top:80px;
 }
 `;

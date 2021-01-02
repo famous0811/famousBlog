@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
-import { observer, inject } from "mobx-react";
+import { inject } from "mobx-react";
 import { useTranslation } from "react-i18next";
 
 import colors from "../../Resources/constants/colors";
@@ -34,12 +34,15 @@ const Header = inject("language")((props: any) => {
   useEffect(() => {
     setmenus(
       menus.map((data) => ({
-        id: data.id,
+        // id: data.id,
+        ...data,
         text: t("menu" + (data.id + 1)),
-        link: data.link,
+        // link: data.link,
+        
       }))
     );
-  }, [i18n.language]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [menus]);
   //   alert();
   return (
     <Wrap>
@@ -126,7 +129,7 @@ const TogleButton = styled.div<{ language: string }>`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: gray;
+    background: ${colors.primaryWhite};
     transition: transform 0.5s;
     cursor:pointer;
     ${({ language }) =>

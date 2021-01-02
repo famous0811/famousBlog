@@ -25,3 +25,24 @@ a {
     cursor: pointer;
     text-decoration: none;
   }
+
+  // .slick-track {
+  //   // display: flex;
+  // }
+  // .slick-track .slick-slide {
+  //   // display: flex;
+  //   height: auto;
+  // }
+  .slick-slider{
+    height:100%;
+  }
+  .slick-list,
+.slick-track {
+    height: 100%;
+}
+.slick-slide > div{
+  height: 100%;
+}
+//   .slick-slide{
+//     height: auto;
+// }
