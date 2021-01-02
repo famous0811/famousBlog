@@ -9,6 +9,8 @@ export const resources = {
         "menu1":"Collection of works",
         "menu2":"About Me",
         "menu3":"Collection of blog posts (to be written)",
+        'kor':"korean",
+        'eng':"english",
       }
     },
     kor: { // 한국어
@@ -18,6 +20,8 @@ export const resources = {
         "menu1":"작품 소개",
         "menu2":"자기소개",
         "menu3":"글 모음집",
+        'kor':"한국어",
+        'eng':"영어",
       }
     }
   }

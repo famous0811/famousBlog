@@ -52,11 +52,11 @@ const Header = inject("language")((props: any) => {
         </ul>
         <div>
           <div className="language">
-            <div>한국어</div>
+            <div>{t("kor")}</div>
             <TogleButton language={language}>
               <div onClick={()=>changelanguage(language)}/>
             </TogleButton>
-            <div>영어</div>
+            <div>{t("eng")}</div>
           </div>
           <div className="darkmode"></div>
         </div>
