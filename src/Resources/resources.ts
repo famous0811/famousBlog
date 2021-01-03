@@ -15,6 +15,10 @@ export const resources = {
         'kor':"Korean",
         'eng':"English",
 
+        'name':"Yoo Myunghwan",
+        'nickname':"allblack",
+        'job':"student",
+        'company':"Sunrin Internet High School",
       }
     },
     kor: { // 한국어
@@ -30,6 +34,10 @@ export const resources = {
         'kor':"한국어",
         'eng':"영어",
 
+        'name':"유명환",
+        'nickname':"닉네임 : allblack",
+        'job':"직업 : 학생",
+        'company':"회사 : 선린인터넷 고등학교",
       }
     }
   }

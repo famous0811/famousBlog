@@ -22,7 +22,7 @@ const Header = inject("language")((props: any) => {
     {
       id: 1,
       text: t("menu2"),
-      link: "",
+      link: "/mypage",
     },
     {
       id: 2,
