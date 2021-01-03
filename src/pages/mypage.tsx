@@ -46,6 +46,16 @@ function Mypage() {
       text: "카카오톡 아이디: umh0811",
     },
   ]);
+  const [otherinformation, setotherinformation] = useState([
+    {
+      id: 0,
+      text: "https://github.com/famous0811",
+    },
+    {
+      id: 1,
+      text: "allblack0811.tistory.com",
+    },
+  ]);
   return (
     <Layout>
       <Wrap>
@@ -95,6 +105,16 @@ function Mypage() {
               </ul>
             </div>
           </div>
+          <div className="otherinformation">
+            <div className="subtitle">Othersite</div>
+            <div className="text">
+              <ul>
+                {otherinformation.map((data) => (
+                  <li key={data.id}>{data.text}</li>
+                ))}
+              </ul>
+            </div>
+        </div>
         </Details>
         <Portfolios></Portfolios>
       </Wrap>
