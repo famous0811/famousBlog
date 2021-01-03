@@ -36,7 +36,7 @@ const Header = inject("language")((props: any) => {
     {
       id: 2,
       text: t("menu3"),
-      link: "",
+      link: "/guestbook",
     },
   ]);
 
@@ -131,12 +131,17 @@ const Menu = styled.div`
           color:${colors.primaryWhite};
         }
       }
-      @media (max-width: 700px) {
+      @media (max-width: 900px) {
         & > div {
           display: none;
         }
         & > select {
           display: block;
+          &>option:hover{
+          background: ${colors.primarybold};
+          color:${colors.primaryWhite};
+          font-weight: bold;
+        }
         }
       }
     }

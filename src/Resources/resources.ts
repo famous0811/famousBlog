@@ -11,7 +11,7 @@ export const resources = {
         "title":"Allblack's Development Trike",
         "menu1":"Collection of works",
         "menu2":"About Me",
-        "menu3":"Collection of blog posts (to be written)",
+        "menu3":"Guestbook",
         'kor':"Korean",
         'eng':"English",
 
@@ -30,7 +30,7 @@ export const resources = {
         "title":"allblack의 개발세발",
         "menu1":"작품 소개",
         "menu2":"자기소개",
-        "menu3":"글 모음집",
+        "menu3":"방명록",
         'kor':"한국어",
         'eng':"영어",
 

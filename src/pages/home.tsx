@@ -35,11 +35,8 @@ function Home() {
   useEffect(() => {
     setSliderContent(
       SliderContent.map((data) => ({
-        // id: data.id,
         ...data,
         content: t("maincontents" + (data.id + 1)),
-        // link: data.link,
-        
       }))
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
