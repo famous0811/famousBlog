@@ -1,13 +1,15 @@
 import React,{ useState} from "react";
 import styled from "styled-components";
-
+import {useHistory} from "react-router-dom";
 function Login() {
+  const History = useHistory();
     const [id, setId]= useState("");
     const [password, setPassword]=useState("");
 
     function Onsubmit(){
         if(id==="" || password==="")
             return;
+            History.replace("/write");
     }
   return (
     <Wrap>
@@ -70,9 +72,10 @@ const InputWrap = styled.span`
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100px;
+    width: 1px;
     height: 1px;
     transition: width 0.5s;
+    background:gray;
   }
   &:hover {
     &:after {
@@ -97,7 +100,7 @@ const Input = styled.input`
   border: none;
   width:100%;
   border-radius:5px;
-  background:gray;
+  /* background:gray; */
   text-align:center;
   padding:10px 50px;
   /* font-size: 1.1rem; */
