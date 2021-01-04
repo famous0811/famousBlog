@@ -48,6 +48,7 @@ const Wrap = styled.div<{ detail?: boolean }>`
     width: 100%;
     height: 100%;
   }
+  
   ${({ detail }) =>
     detail &&
     css`

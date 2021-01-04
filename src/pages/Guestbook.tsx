@@ -10,6 +10,8 @@ function Writed() {
     },
   ]);
   function UpdateGuestbook() {
+    if(chat==="" || userId==="")
+      return;
     setdatas([...datas,{
         id:"1",
         userId: userId,
@@ -40,6 +42,11 @@ function Writed() {
             placeholder="이름을 입력해주세요!"
             onChange={(e) =>setuserId(e.target.value)}
             value={userId}
+            onKeyDown=
+            {(e) =>{
+              if(e.key === 'Enter')
+              UpdateGuestbook();
+            }}
           />
           <input
             className="chat"
