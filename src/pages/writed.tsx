@@ -9,6 +9,17 @@ function Writed() {
       text: "와 안녕하세요!",
     },
   ]);
+  function UpdateGuestbook() {
+    setdatas([...datas,{
+        id:"1",
+        userId: userId,
+        text:chat,
+    }]);
+    setchat("");
+    setuserId("");
+  }
+  const [chat, setchat] = useState("");
+  const [userId, setuserId] = useState("");
   return (
     <Layout>
       {/* 방명록 작성할수 있게 ㅎㅎ */}
@@ -23,7 +34,25 @@ function Writed() {
           ))}
         </Guestbook>
         <WriteGuestbook>
-            <input type="text" placeholder="방명록을 작성해 주세요!"/>
+          <input
+            className="name"
+            type="text"
+            placeholder="이름을 입력해주세요!"
+            onChange={(e) =>setuserId(e.target.value)}
+            value={userId}
+          />
+          <input
+            className="chat"
+            type="text"
+            placeholder="방명록을 작성해 주세요!"
+            onChange={(e) => setchat(e.target.value)}
+            onKeyDown=
+            {(e) =>{
+                if(e.key === 'Enter')
+                UpdateGuestbook();
+              }}    
+            value={chat}
+          />
         </WriteGuestbook>
       </Wrap>
     </Layout>
@@ -42,8 +71,8 @@ const Wrap = styled.div`
   box-sizing: border-box;
 `;
 const Title = styled.h1`
-/* text-align:start; */
-margin:10px 5px;
+  /* text-align:start; */
+  margin: 10px 5px;
 `;
 const Guestbook = styled.div`
   display: flex;
@@ -51,30 +80,49 @@ const Guestbook = styled.div`
   border: 1px solid gray;
   border-radius: 15px;
   /* height:100%;*/
-  width:100%; 
+  overflow-y: auto;
+  width: 100%;
   box-sizing: border-box;
-  padding:20px 40px;
+  padding: 20px 40px;
+  height:40vh;
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
 `;
-const WriteGuestbook= styled.div`
+const WriteGuestbook = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top:10px;
+  & > input {
+    border: none;
+    font-size: 1.2em;
+  }
+  &>.name{
+      max-width:100px;
+      margin-right:10px;
+      font-size: 12px;
+  }
+  &>.chat{
 
+  }
 `;
 const Chat = styled.div`
-position: relative;
+  position: relative;
   & > .userId {
-      position: absolute;
-      top: 0;
-      left:0;
-      font-size:1.2em;
-      /* padding-left:20px; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1.2em;
+    /* padding-left:20px; */
   }
   & > .text {
-      margin-top:30px;
-      border-radius: 10px;
-      padding:2px 20px;
-      background: white;
-      box-sizing: border-box;
-      display: flex;
-      /* max-width:300px; */
+    margin-top: 30px;
+    border-radius: 10px;
+    padding: 2px 20px;
+    background: white;
+    box-sizing: border-box;
+    display: flex;
+    /* max-width:300px; */
   }
 `;
 export default Writed;
