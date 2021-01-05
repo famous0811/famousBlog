@@ -5,8 +5,16 @@ import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import { Img } from "../Resources/img";
 import colors from "../Resources/constants/colors";
+import Get from '../api/get';
 function Home() {
   const { t } = useTranslation();
+  useEffect(()=>{
+    Get().Test().then((res)=>{
+      alert(res);
+    }).catch((err) => {
+      console.log(err);
+    });
+  },[])
   const [SliderContent, setSliderContent] = useState([
     {
       id: 0,
