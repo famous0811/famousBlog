@@ -7,6 +7,7 @@ import Writed from './pages/Guestbook';
 
 import Login from './pages/admin/login'
 import Writepage from './pages/admin/writeportfolio';
+import SignUp from './pages/admin/signup';
 
 export default(
     <Router>
@@ -20,6 +21,7 @@ export default(
 				component={Portfolios}
 			/>
             <Route exact path="/adminlogin" component={Login}/>
+            <Route exact path="/adminsignup" component={SignUp}/>
             <Route exact path="/write" component={Writepage}/>
         </Switch>
     </Router>

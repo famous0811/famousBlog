@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 
 import { Img } from "../Resources/img";
 import colors from "../Resources/constants/colors";
+import {getData} from "../api/get";
 
 function Mypage() {
   const { t } = useTranslation();
@@ -56,6 +57,14 @@ function Mypage() {
       text: "allblack0811.tistory.com",
     },
   ]);
+
+  useEffect(() => {
+    getData().GetInterduce().then((data)=>{
+      console.log(data);
+    }).catch(err=>{
+      console.log(err);
+    })
+  },[])
   return (
     <Layout>
       <Wrap>

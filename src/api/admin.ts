@@ -13,10 +13,11 @@ export function Admin(){
         .then((res) => {
             console.log(res.data);
             window.localStorage.setItem('admin',res.data);
+            window.location.replace("/write");
             return res.data;
         })
         .catch((err) => {
-            alert(err);
+            // alert(err);
             throw parseError(err);
         });
     return data;

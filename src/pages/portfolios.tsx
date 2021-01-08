@@ -3,10 +3,10 @@ import Layout from "../components/layout";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import Item from "../components/portfolios";
-import colors from "../Resources/constants/colors";
+// import colors from "../Resources/constants/colors";
+import {getData} from "../api/get";
 function Portfolios({match}:any) {
     const id=match.params.id;
-    console.log(id);
     const { t } = useTranslation();
     const [portfolios,setportfolios]=useState([{
         id:"0",
@@ -26,11 +26,19 @@ function Portfolios({match}:any) {
         img:"test"
     }]);
     const [Searchdata,setSearchdata]=useState<any>();
-    
+    useEffect(() => {
+        getData().Getportfolio().then(data=>{
+            console.log(data);
+        }).catch(err =>{
+            console.error(err);
+        });
+    },[]);
+
     useEffect(() => {
         setSearchdata(portfolios.map(data=>data.id===match.params.id));
     },[match.params]);
 
+    
     return (
         <Layout>
             <Wrap>

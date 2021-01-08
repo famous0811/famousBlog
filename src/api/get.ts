@@ -43,7 +43,8 @@ export function getData(){
 		let data = await getClient
         .get('/getportfolio')
         .then((res) => {
-            console.log(res.data);
+            console.log(res);
+            alert(res.data);
             return res.data;
         })
         .catch((err) => {

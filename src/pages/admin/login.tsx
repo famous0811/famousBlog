@@ -1,29 +1,43 @@
-import React,{ useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import {Admin} from "../../api/admin";
+
 function Login() {
   const History = useHistory();
-    const [id, setId]= useState("");
-    const [password, setPassword]=useState("");
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
 
-    function Onsubmit(){
-        if(id==="" || password==="")
-            return;
-            History.replace("/write");
-    }
+  function Onsubmit() {
+    if (id === "" || password === "") return;
+    //History.replace("/write");
+    Admin().AdminLogin({id, password});
+  }
   return (
     <Wrap>
       <div>
         <Title>AdminLogin</Title>
         <div className="login">
           <InputWrap>
-            <Input type="text" placeholder="어드민 아이디를 입력하세요!" value={id} onChange={e=>setId(e.target.value)} />
+            <Input
+              type="text"
+              placeholder="어드민 아이디를 입력하세요!"
+              value={id}
+              onChange={(e) => setId(e.target.value)}
+            />
           </InputWrap>
           <InputWrap>
-            <Input type="password" placeholder="비밀번호를 입력해주세요!" value={password} onChange={e=>setPassword(e.target.value)}/>
+            <Input
+              type="password"
+              placeholder="비밀번호를 입력해주세요!"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </InputWrap>
         </div>
-        <Button type="submit" onClick={Onsubmit}>login</Button>
+        <Button type="submit" onClick={Onsubmit}>
+          login
+        </Button>
       </div>
     </Wrap>
   );
@@ -51,20 +65,18 @@ const Wrap = styled.div`
     max-width: 350px;
     max-height: 400px;
     padding: 30px;
-    &>.login{
-        display:flex;
-        flex-direction: column;
-        justify-content:space-around;
-        height: 100%;
-        width: 100%;
-        max-height:100px;
-        border-radius:10px;
+    & > .login {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      height: 100%;
+      width: 100%;
+      max-height: 100px;
+      border-radius: 10px;
     }
   }
 `;
-const Title= styled.h1`
-
-`;
+const Title = styled.h1``;
 const InputWrap = styled.span`
   position: relative;
   &:after {
@@ -75,7 +87,7 @@ const InputWrap = styled.span`
     width: 1px;
     height: 1px;
     transition: width 0.5s;
-    background:gray;
+    background: gray;
   }
   &:hover {
     &:after {
@@ -98,11 +110,11 @@ const Button = styled.button`
 `;
 const Input = styled.input`
   border: none;
-  width:100%;
-  border-radius:5px;
+  width: 100%;
+  border-radius: 5px;
   /* background:gray; */
-  text-align:center;
-  padding:10px 50px;
+  text-align: center;
+  padding: 10px 50px;
   /* font-size: 1.1rem; */
 `;
 export default Login;
