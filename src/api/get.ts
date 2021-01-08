@@ -6,8 +6,8 @@ interface GeastProps{
 	text: string;
 }
 
-export function Geast({userId,text}:GeastProps){
-	const MakeGustbook=async()=>{
+export function Guest(){
+	const MakeGustbook=async({userId,text}:GeastProps)=>{
 		let data = await getClient
         .post('/guest/makeguestbook',{userId,text})
         .then((res) => {
@@ -31,7 +31,7 @@ export function getData(){
         .get('/getguestbook')
         .then((res) => {
             console.log(res.data);
-            return res.data;
+            return res.data.data;
         })
         .catch((err) => {
             alert(err);

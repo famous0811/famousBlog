@@ -1,34 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import Layout from "../components/layout";
 import styled from "styled-components";
+
+import {Guest,getData} from "../api/get";
 function Writed() {
-  const [datas, setdatas] = useState([
-    {
-      id: "0",
-      userId: "test",
-      text: "와 안녕하세요!",
-    },
-  ]);
+  const [chat, setchat] = useState("");
+  const [userId, setuserId] = useState("");
+  const [datas, setdatas] = useState<any[]>();
+  useEffect(()=>{
+    getData().Getguestbook().then(res =>{
+      setdatas(res);
+    }).catch(err =>{
+      console.log(err);
+    })
+  },[]);
   function UpdateGuestbook() {
     if(chat==="" || userId==="")
       return;
-    setdatas([...datas,{
-        id:"1",
-        userId: userId,
-        text:chat,
-    }]);
+
+    Guest().MakeGustbook({userId,text:chat});
     setchat("");
     setuserId("");
+    window.location.reload();
   }
-  const [chat, setchat] = useState("");
-  const [userId, setuserId] = useState("");
+  
   return (
     <Layout>
-      {/* 방명록 작성할수 있게 ㅎㅎ */}
       <Wrap>
         <Title>방명록</Title>
         <Guestbook>
-          {datas.map((data) => (
+          {datas && datas.map((data) => (
             <Chat key={data.id}>
               <div className="userId">{data.userId}</div>
               <div className="text">{data.text}</div>
