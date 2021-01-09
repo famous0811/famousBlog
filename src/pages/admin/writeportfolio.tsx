@@ -3,7 +3,8 @@ import styled from "styled-components";
 import Layout from "../../components/layout";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
-import colors from "../../Resources/constants/colors";
+import {Admin} from "../../api/admin";
+// import colors from "../../Resources/constants/colors";
 
 function Writeportfolio() {
   const History = useHistory();
@@ -16,6 +17,8 @@ function Writeportfolio() {
   useEffect(() => {
     //토큰 검사
     // History.replace("/");
+    console.log(window.localStorage.getItem("admin"));
+    Admin().AdminCheckToken()
   }, []);
 
   function setImg() {
@@ -107,6 +110,7 @@ const TitleLine = styled.div`
   padding:30px 40px;
   }
 `;
+
 const Title = styled.input`
   width: 100%;
   padding:10px 0px;

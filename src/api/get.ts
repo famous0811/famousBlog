@@ -44,7 +44,7 @@ export function getData(){
         .get('/getportfolio')
         .then((res) => {
             console.log(res);
-            alert(res.data);
+            // alert(res.data);
             return res.data;
         })
         .catch((err) => {

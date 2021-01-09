@@ -16,7 +16,7 @@ function Signup() {
             return;
 
         Admin().AdminSignUp({id,password});
-        alert("test");
+        // alert("test");
     }
     return (
         <Wrap>

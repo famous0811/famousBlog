@@ -4,7 +4,7 @@ import axios from "axios";
 const api=axios.create({
     baseURL:"http://192.168.35.179:4000",
     headers: {
-        "Authorization": window.localStorage.getItem("admin") || '',
+        "authorization": window.localStorage.getItem("admin") || '',
         Content_type: "application/json",
         "Access-Control-Allow-Origin": "*",
       },
