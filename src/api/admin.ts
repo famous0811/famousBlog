@@ -36,10 +36,16 @@ export function Admin(){
     return data;
     }
     const AdminCheckToken=async () => {
+        // alert("noe");
         let data = await getClient
         .get('/admin/token')
         .then((res) => {
-            console.log(res.data);
+            if(res.data.result==="token is fail")
+            {
+                window.localStorage.clear();
+                window.location.replace("/");
+            }
+
             return res.data;
         })
         .catch((err) => {
@@ -77,6 +83,7 @@ interface Interduce{
 
 export function AdminActivity(){
     const MakePortfolio=async ({img,kor,eng,title}:Portfolio)=>{
+        alert('test');
         let data = await getClient
         .post('/admin/makeportfolio',{img,kor,eng,title})
         .then((res) => {

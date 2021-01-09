@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Layout from "../../components/layout";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
-import {Admin} from "../../api/admin";
+import {Admin,AdminActivity} from "../../api/admin";
 // import colors from "../../Resources/constants/colors";
 
 function Writeportfolio() {
@@ -17,7 +17,7 @@ function Writeportfolio() {
   useEffect(() => {
     //토큰 검사
     // History.replace("/");
-    console.log(window.localStorage.getItem("admin"));
+    // console.log(window.localStorage.getItem("admin"));
     Admin().AdminCheckToken()
   }, []);
 
@@ -34,12 +34,18 @@ function Writeportfolio() {
       const reader = new FileReader();
       reader.onload = function (e?: any) {
         image_section.src = e.target.result;
-        setimg(e.target.result); //base64incoding
+        setimg(e.target.result);
       };
       reader.readAsDataURL(image.files![0]);
     }
   }
 
+  function Onsubmit(){
+    if(img==="" || kor==="" || eng==="" || title==="")
+      return;
+
+      AdminActivity().MakePortfolio({img:btoa(img),kor,eng,title});
+  }
   return (
     <Layout>
       <Wrap>
@@ -85,6 +91,7 @@ function Writeportfolio() {
             onChange={(e) => seteng(e.target.value)}
           />
         </WrapText>
+        <Button type="submit" onClick={Onsubmit}>저장하기</Button>
         </TitleLine>
       </Wrap>
     </Layout>
@@ -102,13 +109,15 @@ const Wrap = styled.div`
   justify-content: space-around;
   padding: 40px 50px;
   overflow-y:auto;
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+  }
 `;
 const TitleLine = styled.div`
   width: 100%;
   height: 100%;
   border-top: 1px solid black;
   padding:30px 40px;
-  }
 `;
 
 const Title = styled.input`
@@ -136,5 +145,19 @@ justify-content:space-around;
 &>textarea:first-child{
   margin-right:10px;
 }
+`;
+
+const Button= styled.button`
+  border:none;
+  background:black;
+  color:white;
+  width:100%;
+  height:30px;
+  margin-bottom:10px;
+  transition:background 0.5s, color 0.5s;
+  &:hover{
+    background:white;
+  color:black;
+  }
 `;
 export default Writeportfolio;

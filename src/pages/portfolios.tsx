@@ -29,6 +29,7 @@ function Portfolios({match}:any) {
     useEffect(() => {
         getData().Getportfolio().then(data=>{
             console.log(data);
+            setportfolios(data);
         }).catch(err =>{
             console.error(err);
         });

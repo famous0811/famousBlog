@@ -45,7 +45,7 @@ export function getData(){
         .then((res) => {
             console.log(res);
             // alert(res.data);
-            return res.data;
+            return res.data.data;
         })
         .catch((err) => {
             alert(err);
