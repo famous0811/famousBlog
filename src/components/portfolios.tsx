@@ -5,19 +5,22 @@ import colors from "../Resources/constants/colors";
 import { Link,useHistory } from "react-router-dom";
 interface Portfoliosprops {
   detail?: boolean;
-  id: string;
-  content: string;
+  _id: string;
+  eng: string;
+  kor: string;
   img: string;
 }
-function Portfolios({ detail, id, content, img }: Portfoliosprops) {
+function Portfolios({ detail, _id, kor,eng, img }: Portfoliosprops) {
     const history = useHistory();
+    const nowlanguage =window.localStorage.getItem("language");
     if (detail) {
+    console.log("detail",detail, _id, kor,eng, img );
     return (
       <>
         <Background onClick={()=>history.replace("/portfolios")}/>
         <Wrap detail>
           <img src={img} alt="(대충 대단한 프로젝트)" />
-          <div>{content}</div>
+          <div>{nowlanguage==="kor" ? kor : eng}</div>
         </Wrap>
       </>
     );
@@ -25,8 +28,8 @@ function Portfolios({ detail, id, content, img }: Portfoliosprops) {
     return (
       <Wrap>
         <img src={img} alt="(대충 대단한 프로젝트)" />
-        <div>{content}</div>
-        <Link to={"/portfolios/" + id} />
+        <div>{nowlanguage==="kor" ? kor : eng}</div>
+        <Link to={"/portfolios/" + _id} />  
       </Wrap>
     );
   }
@@ -48,7 +51,9 @@ const Wrap = styled.div<{ detail?: boolean }>`
     width: 100%;
     height: 100%;
   }
-  
+  &>img{
+    max-width:200px;
+  }
   ${({ detail }) =>
     detail &&
     css`

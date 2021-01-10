@@ -5,27 +5,12 @@ import { useTranslation } from "react-i18next";
 import Item from "../components/portfolios";
 // import colors from "../Resources/constants/colors";
 import {getData} from "../api/get";
+
 function Portfolios({match}:any) {
     const id=match.params.id;
-    const { t } = useTranslation();
-    const [portfolios,setportfolios]=useState([{
-        id:"0",
-        content:"작품명어쩌구 저쩌구",
-        img:"test"
-    },{
-        id:"1",
-        content:"작품명어쩌구 저쩌구",
-        img:"test"
-    },{
-        id:"2",
-        content:"작품명어쩌구 저쩌구",
-        img:"test"
-    },{
-        id:"3",
-        content:"작품명어쩌구 저쩌구",
-        img:"test"
-    }]);
+    const [portfolios,setportfolios]=useState<any[]>([]);
     const [Searchdata,setSearchdata]=useState<any>();
+
     useEffect(() => {
         getData().Getportfolio().then(data=>{
             console.log(data);
@@ -36,14 +21,15 @@ function Portfolios({match}:any) {
     },[]);
 
     useEffect(() => {
-        setSearchdata(portfolios.map(data=>data.id===match.params.id));
-    },[match.params]);
+        if (id !== {})
+            setSearchdata(portfolios.filter(data=>data._id===id)[0])
+    },[id]);
 
     
     return (
         <Layout>
             <Wrap>
-                {portfolios.map(data=>(<Item key={data.id} {...data}></Item>))}
+                {portfolios && portfolios.map(data=>(<Item key={data.id} {...data}></Item>))}
                 {id && <Item detail {...Searchdata}></Item>}
             </Wrap>
         </Layout>
@@ -51,7 +37,6 @@ function Portfolios({match}:any) {
 }
 
 const Wrap = styled.div`
-    /* width: 100%; */
     height: 100%;
     display: flex;
     flex-flow:row wrap;
