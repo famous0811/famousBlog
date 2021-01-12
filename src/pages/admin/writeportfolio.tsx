@@ -18,7 +18,15 @@ function Writeportfolio() {
     //토큰 검사
     // History.replace("/");
     // console.log(window.localStorage.getItem("admin"));
-    Admin().AdminCheckToken()
+    Admin().AdminCheckToken().then(res=>{
+      if(res.data.result==="token is fail")
+      {
+          window.localStorage.clear();
+          window.location.replace("/");
+      }
+    }).catch(err=>{
+      console.log(err);
+    })
   }, []);
 
   function setImg() {

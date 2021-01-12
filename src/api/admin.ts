@@ -40,13 +40,7 @@ export function Admin(){
         let data = await getClient
         .get('/admin/token')
         .then((res) => {
-            if(res.data.result==="token is fail")
-            {
-                window.localStorage.clear();
-                window.location.replace("/");
-            }
-
-            return res.data;
+            return res.data.result;
         })
         .catch((err) => {
             alert(err);
@@ -69,16 +63,21 @@ interface Portfolio{
     title:string;
     id?: string
 }
+
 interface Interduce{
-    id?: string;
     welcome:{
         kor: string;
         eng: string;
     };
     skills: string[];
-    portfolios: Portfolio[];
-    contacts: string[];
-    othersites: string[];
+    portfolios: {
+        id:string;
+        title: string;
+    }[];
+    otherinformations: {
+        text: string;
+        adds: string;
+    }[];
 }
 
 export function AdminActivity(){
@@ -97,8 +96,9 @@ export function AdminActivity(){
     return data;
     }
     const Amendportfolio=async ({id,img,kor,eng,title}:Portfolio)=>{
+        alert(img);
         let data = await getClient
-        .post('/admin/amendInterduce',{id,img,kor,eng,title})
+        .post('/admin/amendportfolio',{id,img,kor,eng,title})
         .then((res) => {
             console.log(res.data);
             return res.data;
@@ -109,9 +109,9 @@ export function AdminActivity(){
         });
     return data;
     }
-    const MakeInterduce=async ({welcome,skills,portfolios, contacts,othersites}:Interduce)=>{
+    const MakeInterduce=async ({welcome,skills,portfolios, otherinformations}:Interduce)=>{
         let data = await getClient
-        .post('/admin/makeportfolio',{welcome,skills,portfolios, contacts,othersites})
+        .post('/admin/makeInterduce',{welcome,skills,portfolios, otherinformations})
         .then((res) => {
             console.log(res.data);
             return res.data;
@@ -122,9 +122,9 @@ export function AdminActivity(){
         });
     return data;
     }
-    const AmendInterduce=async ({id,welcome,skills,portfolios, contacts,othersites}:Interduce)=>{
+    const AmendInterduce=async ({welcome,skills,portfolios,otherinformations}:Interduce)=>{
         let data = await getClient
-        .post('/admin/makeportfolio',{id,welcome,skills,portfolios, contacts,othersites})
+        .post('/admin/amendInterduce',{welcome,skills,portfolios,otherinformations})
         .then((res) => {
             console.log(res.data);
             return res.data;

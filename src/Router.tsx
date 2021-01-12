@@ -9,6 +9,8 @@ import Login from './pages/admin/login'
 import Writepage from './pages/admin/writeportfolio';
 import SignUp from './pages/admin/signup';
 
+import writemypages from './pages/admin/writemypage';
+import Reviseportfolio from './pages/admin/Reviseportfolio';
 export default(
     <Router>
         <Switch>
@@ -22,6 +24,8 @@ export default(
 			/>
             <Route exact path="/adminlogin" component={Login}/>
             <Route exact path="/adminsignup" component={SignUp}/>
+            <Route exact path="/adminwritemypages" component={writemypages}/>
+            <Route exact path="/adminReviseportfolio/:id" component={Reviseportfolio}/>
             <Route exact path="/write" component={Writepage}/>
         </Switch>
     </Router>

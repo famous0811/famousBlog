@@ -65,10 +65,20 @@ export function getData(){
             throw parseError(err);
 		});
 		return data;
-	}
+    }
+    const GetDetailportfolio=async(id:string)=>{
+        let data = await getClient.get('/getdetailportfolio/'+id).then(res=>{
+            return res.data.data;
+        }).catch(err=>{
+            alert(err);
+            throw parseError(err);
+        })
+        return data;
+    }
 	return{
 		Getguestbook,
 		Getportfolio,
-		GetInterduce
+        GetInterduce,
+        GetDetailportfolio
 	}
 }

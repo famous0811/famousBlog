@@ -4,7 +4,6 @@ import { initReactI18next } from "react-i18next"
 export const resources = {
     eng: { // 영어
       translation: {
-        "welcome": "Hello, this is the world's most famous blog (?)",
         "title":"Allblack's Development Trike",
         "menu1":"Collection of works",
         "menu2":"About Me",
@@ -14,13 +13,19 @@ export const resources = {
 
         'name':"Yoo Myunghwan",
         'nickname':"allblack",
-        'job':"student",
         'company':"Sunrin Internet High School",
+        "welcome1":"독특하고 창의작인 ",
+        "welcome2":"개발자",
+        "welcome3":" Famous 유명환 입니다",
+        'guestplace1':"input your nmae",
+        'guestplace2':"input guestbook",
+        "project":"Project",
+        "skills":"skills",
+        "interduce":"interduce",
       }
     },
     kor: { // 한국어
       translation: {
-        "welcome": "안녕하세요 세상에서 가장 유명한 남자 famous 유명환 이라고 합니다!",
         "title":"allblack의 개발세발",
         "menu1":"작품 소개",
         "menu2":"자기소개",
@@ -28,9 +33,16 @@ export const resources = {
         'kor':"한국어",
         'eng':"영어",
         'name':"유명환",
-        'nickname':"닉네임 : allblack",
-        'job':"직업 : 학생",
-        'company':"회사 : 선린인터넷 고등학교",
+        'nickname':"allblack",
+        'company':"선린인터넷 고등학교 제학",
+        "welcome1":"독특하고 창의작인 ",
+        "welcome2":"개발자",
+        "welcome3":" Famous 유명환 입니다",
+        'guestplace1':"이름을 입력해주세요!",
+        'guestplace2':"방명록을 작성해 주세요!",
+        "project":"프로젝트",
+        "skills":"기술 스텍",
+        "interduce":"자기소게",
       }
     }
   }

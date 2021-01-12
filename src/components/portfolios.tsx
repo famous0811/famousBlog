@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useState, useEffect} from "react";
 import styled, { css } from "styled-components";
 //작품을 2가지로 반환 디테일 or 간단한 소게
 import colors from "../Resources/constants/colors";
@@ -12,23 +12,33 @@ interface Portfoliosprops {
 }
 function Portfolios({ detail, _id, kor,eng, img }: Portfoliosprops) {
     const history = useHistory();
-    const nowlanguage =window.localStorage.getItem("language");
+    // const { language } = props.language;
+    const [language,setlanguage]=useState(window.localStorage.getItem("language"));
+
+    useEffect(() => {
+      // setlanguage(window.localStorage.getItem("language"));
+      alert("laguage");
+    },[window.localStorage.getItem("language")])
+
+    // const nowlanguage =window.localStorage.getItem("language");
     if (detail) {
-    console.log("detail",detail, _id, kor,eng, img );
     return (
       <>
         <Background onClick={()=>history.replace("/portfolios")}/>
         <Wrap detail>
-          <img src={img} alt="(대충 대단한 프로젝트)" />
-          <div>{nowlanguage==="kor" ? kor : eng}</div>
+          <img src={atob(img)} alt="(대충 대단한 프로젝트)" />
+          <div>{language==="kor" ? kor : eng}</div>
         </Wrap>
+        <ReviseButton admin={window.localStorage.getItem("admin")!==undefined}>
+        <div onClick={() => history.replace("/adminReviseportfolio/"+ _id)}>✍</div>
+      </ReviseButton>
       </>
     );
   } else {
     return (
       <Wrap>
-        <img src={img} alt="(대충 대단한 프로젝트)" />
-        <div>{nowlanguage==="kor" ? kor : eng}</div>
+        <img src={atob(img)} alt="(대충 대단한 프로젝트)" />
+        <div>{language==="kor" ? kor : eng}</div>
         <Link to={"/portfolios/" + _id} />  
       </Wrap>
     );
@@ -78,5 +88,18 @@ const Background = styled.div`
   background: rgba(231, 231, 222, 0.5);
   z-index: 200;
   cursor: pointer;
+`;
+const ReviseButton = styled.div<{admin: boolean}>`
+${({admin})=>!admin && css`
+      display:none;
+`}
+  position: fixed;
+  bottom: 6%;
+  right: 3%;
+  cursor: pointer;
+  background: gray;
+  padding: 15px;
+  border-radius: 50px;
+  z-index: 201;
 `;
 export default Portfolios;

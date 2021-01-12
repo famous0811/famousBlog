@@ -1,12 +1,14 @@
 import React, { useState, useEffect} from "react";
 import Layout from "../components/layout";
 import styled from "styled-components";
-
 import {Guest,getData} from "../api/get";
+import { useTranslation } from "react-i18next";
+
 function Writed() {
   const [chat, setchat] = useState("");
   const [userId, setuserId] = useState("");
   const [datas, setdatas] = useState<any[]>();
+  const { t } = useTranslation();
   useEffect(()=>{
     getData().Getguestbook().then(res =>{
       setdatas(res);
@@ -27,7 +29,7 @@ function Writed() {
   return (
     <Layout>
       <Wrap>
-        <Title>방명록</Title>
+        <Title>{t("menu3")}</Title>
         <Guestbook>
           {datas && datas.map((data) => (
             <Chat key={data.id}>
@@ -40,7 +42,7 @@ function Writed() {
           <input
             className="name"
             type="text"
-            placeholder="이름을 입력해주세요!"
+            placeholder={t("guestplace1")}
             onChange={(e) =>setuserId(e.target.value)}
             value={userId}
             onKeyDown=
@@ -52,7 +54,7 @@ function Writed() {
           <input
             className="chat"
             type="text"
-            placeholder="방명록을 작성해 주세요!"
+            placeholder={t("guestplace2")}
             onChange={(e) => setchat(e.target.value)}
             onKeyDown=
             {(e) =>{
