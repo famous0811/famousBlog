@@ -45,6 +45,10 @@ function Writemypage() {
           .GetInterduce()
           .then((data) => {
             console.log(data);
+            setwelcome(data.welcome);
+            setotherinformations(data.otherinformations);
+            setPortfolios(data.portfolios);
+            setSkills(data.Skills);
           })
           .catch((err) => {
             console.log(err);

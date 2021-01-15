@@ -58,7 +58,7 @@ export function getData(){
         .get('/getInterduce')
         .then((res) => {
             console.log(res.data);
-            return res.data;
+            return res.data.data[0];
         })
         .catch((err) => {
             alert(err);
