@@ -10,32 +10,28 @@ const Header = inject("language")((props: any) => {
   const { t, i18n } = useTranslation();
   const History = useHistory();
   const { language, changeLanguage } = props.language;
+  const [params, setparams] = useState(window.location.pathname);
   const changelanguage = (lng: string) => {
     lng === "eng" ? (lng = "kor") : (lng = "eng");
     changeLanguage(lng);
     i18n.changeLanguage(lng);
-
-    setmenus(
-      menus.map((data) => ({
-        ...data,
-        text: t("menu" + (data.id + 1)),
-      }))
-    );
   };
+
+  useEffect(() => {
+    setparams(window.location.pathname);
+  }, [window.location.pathname]);
+
   const [menus, setmenus] = useState([
     {
-      id: 0,
-      text: t("menu1"),
+      id: 1,
       link: "/portfolios",
     },
     {
-      id: 1,
-      text: t("menu2"),
+      id: 2,
       link: "/mypage",
     },
     {
-      id: 2,
-      text: t("menu3"),
+      id: 3,
       link: "/guestbook",
     },
   ]);
@@ -47,7 +43,7 @@ const Header = inject("language")((props: any) => {
         <ul>
           {menus.map((menu) => (
             <li key={menu.id}>
-              <a href={menu.link}>{menu.text}</a>
+              <a href={menu.link} className={params===menu.link ? "clicked" : ""}>{t("menu" + menu.id)}</a>
             </li>
           ))}
         </ul>
@@ -62,7 +58,10 @@ const Header = inject("language")((props: any) => {
               <div>{t("eng")}</div>
             </div>
             {/* mobile */}
-            <select onChange={(e) => changelanguage(e.target.value)} value={language}>
+            <select
+              onChange={(e) => changelanguage(e.target.value)}
+              value={language}
+            >
               <option value="kor">{t("kor")}</option>
               <option value="eng">{t("eng")}</option>
             </select>
@@ -104,12 +103,16 @@ const Menu = styled.div`
     display: flex;
     & > li {
       padding: 0px 10px;
+      & > .clicked {
+          font-weight: 600;
+      }
       & > a {
         color: ${colors.primaryWhite};
         transition: font-weight 0.3s;
         &:hover {
-          font-weight: bold;
+          font-weight: 600;
         }
+        
       }
     }
   }
@@ -119,16 +122,15 @@ const Menu = styled.div`
     & > .language {
       & > div {
         display: flex;
-        
       }
       & > select {
-        background:none;
+        background: none;
         display: none;
-        border:none;
-        color:${colors.primaryWhite};
-        &>option {
+        border: none;
+        color: ${colors.primaryWhite};
+        & > option {
           background: ${colors.primarybold};
-          color:${colors.primaryWhite};
+          color: ${colors.primaryWhite};
         }
       }
       @media (max-width: 900px) {
@@ -137,11 +139,11 @@ const Menu = styled.div`
         }
         & > select {
           display: block;
-          &>option:hover{
-          background: ${colors.primarybold};
-          color:${colors.primaryWhite};
-          font-weight: bold;
-        }
+          & > option:hover {
+            background: ${colors.primarybold};
+            color: ${colors.primaryWhite};
+            font-weight: bold;
+          }
         }
       }
     }

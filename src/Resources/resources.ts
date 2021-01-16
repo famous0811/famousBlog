@@ -17,7 +17,7 @@ export const resources = {
         "welcome1":"독특하고 창의작인 ",
         "welcome2":"개발자",
         "welcome3":" Famous 유명환 입니다",
-        'guestplace1':"input your nmae",
+        'guestplace1':"input your name",
         'guestplace2':"input guestbook",
         "project":"Project",
         "skills":"skills",

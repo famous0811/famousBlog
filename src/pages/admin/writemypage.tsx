@@ -1,76 +1,103 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { getData } from "../../api/get";
-import {AdminActivity} from "../../api/admin";
+import { AdminActivity } from "../../api/admin";
 import styled from "styled-components";
 function Writemypage() {
-  const [skills, setSkills] = useState([
-    "React-redux,mobx","React-redux,mobx"
-  ]);
-  const [portfolios, setPortfolios] = useState([
+  const [skills, setSkills] = useState([]);
+  const [portfolios, setPortfolios] = useState<
+    { _id: string; title: string }[]
+  >([]);
+  const [otherinformations, setotherinformations] = useState<
     {
-      id: "0",
-      title: "plant-plan-2020",
-    },
-    // {
-    //   id: "1",
-    //   title: "connecText (2020)",
-    // },
-  ]);
-  const [otherinformations, setotherinformations] = useState([
-    {
-      
-      text: "umh0811@naver.com",
-      adds:"",
-    },
-    {
-      text: "카카오톡 아이디: umh0811",
-      adds:"",
-    },
-    {
-      text: "Github",
-      adds: "https://github.com/famous0811"
-    },
-    {
-      
-      text: "blog",
-      adds: "https://allblack0811.tistory.com/"
-    },
-  ]);
-    const [welcome, setwelcome] = useState({
-      kor: "안녕하세요 webfront개발자가 되기위해 노력하는 유명환이라고 합니다! 현제 react를 주력으로 하고 있고 node.js를 열심히 공부하고 있습니다.",
-    eng: "hellow I want to be web front engnier",
+      _id: string;
+      text: string;
+      adds: string;
+    }[]
+  >([]);
+  const [welcome, setwelcome] = useState<{
+    kor: string;
+    eng: string;
+  }>({
+    kor: "",
+    eng: "",
+  });
+
+  useEffect(() => {
+    getData()
+      .GetInterduce()
+      .then((data) => {
+        setwelcome(data.wlecome);
+        setotherinformations(data.otherinformations);
+        setPortfolios(data.portfolios);
+        setSkills(data.skills);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  function Onsubmit() {
+    AdminActivity().AmendInterduce({
+      welcome,
+      skills,
+      portfolios,
+      otherinformations,
     });
-    useEffect(() => {
-        getData()
-          .GetInterduce()
-          .then((data) => {
-            console.log(data);
-            setwelcome(data.welcome);
-            setotherinformations(data.otherinformations);
-            setPortfolios(data.portfolios);
-            setSkills(data.Skills);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }, []);
-
-    function Onsubmit() {
-      AdminActivity().AmendInterduce({welcome,skills,portfolios,otherinformations});
-    }
-    return (
-        <Wrap>
-            {portfolios && portfolios.map(data=>{
-              <input key={data.id} type="text" value={data.title}/>
-            })}
-
-            <button type="submit" onClick={Onsubmit}>수정</button>
-        </Wrap>
-    );
+  }
+  // alert(welcome.kor);
+  return (
+    <Wrap>
+      <div className="contents">
+        <h1>welcome</h1>
+        <input type="text" value={welcome.kor} style={{ width: "100%"}}/>
+        <input type="text" value={welcome.eng} style={{ width: "100%"}}/>
+      </div>
+      <div className="contents">
+        <h1>skills</h1>
+        {skills.map((data) => (
+          <input type="text" value={data} style={{ width: "100%"}}/>
+        ))}
+      </div>
+      <div className="contents">
+        <h1>portfolios</h1>
+        <ol>
+        {portfolios.map((data) => (
+          <li key={data._id}>{data.title}</li>
+        ))}
+        </ol>
+      </div>
+      <div className="contents">
+        <h1>otherinformations</h1>
+        {otherinformations.map((data) => (
+          <div key={data._id} style={{ width: "100%", display: "flex" }}>
+            <input
+              type="text"
+              value={data.text}
+              style={{ width: "100%"}}
+            />
+            <input
+              type="text"
+              value={data.adds}
+              style={{ width: "100%"}}
+            />
+          </div>
+        ))}
+      </div>
+      <button type="submit" onClick={Onsubmit}>
+        수정
+      </button>
+    </Wrap>
+  );
 }
 
 const Wrap = styled.div`
-
+  display: flex;
+  flex-direction: column;
+  margin: 20px 40px;
+  box-sizing: border-box;
+  &>.contents{
+    margin:20px 0px;
+  }
 `;
 
 export default Writemypage;

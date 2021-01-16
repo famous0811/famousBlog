@@ -71,7 +71,7 @@ interface Interduce{
     };
     skills: string[];
     portfolios: {
-        id:string;
+        _id:string;
         title: string;
     }[];
     otherinformations: {

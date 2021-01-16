@@ -3,31 +3,34 @@ import styled, { css } from "styled-components";
 //작품을 2가지로 반환 디테일 or 간단한 소게
 import colors from "../Resources/constants/colors";
 import { Link,useHistory } from "react-router-dom";
+import { observer, inject } from "mobx-react";
 interface Portfoliosprops {
   detail?: boolean;
   _id: string;
   eng: string;
   kor: string;
   img: string;
+  language:any;
 }
-function Portfolios({ detail, _id, kor,eng, img }: Portfoliosprops) {
+const Portfolios=observer(inject("language")(({ detail, _id, kor,eng, img,language }: Portfoliosprops)=>{
     const history = useHistory();
+
     // const { language } = props.language;
-    const [language,setlanguage]=useState(window.localStorage.getItem("language"));
+    // const [language,setlanguage]=useState(window.localStorage.getItem("language"));
 
-    useEffect(() => {
-      // setlanguage(window.localStorage.getItem("language"));
-      alert("laguage");
-    },[window.localStorage.getItem("language")])
-
+    // useEffect(() => {
+    //   // setlanguage(window.localStorage.getItem("language"));
+    //   alert("change");
+    // },[language])
     // const nowlanguage =window.localStorage.getItem("language");
+    
     if (detail) {
     return (
       <>
         <Background onClick={()=>history.replace("/portfolios")}/>
         <Wrap detail>
           <img src={atob(img)} alt="(대충 대단한 프로젝트)" />
-          <div>{language==="kor" ? kor : eng}</div>
+          <div>{language.language==="kor" ? kor : eng}</div>
         </Wrap>
         <ReviseButton admin={window.localStorage.getItem("admin")!==undefined}>
         <div onClick={() => history.replace("/adminReviseportfolio/"+ _id)}>✍</div>
@@ -38,12 +41,12 @@ function Portfolios({ detail, _id, kor,eng, img }: Portfoliosprops) {
     return (
       <Wrap>
         <img src={atob(img)} alt="(대충 대단한 프로젝트)" />
-        <div>{language==="kor" ? kor : eng}</div>
+        <div>{language.language==="kor" ? kor : eng}</div>
         <Link to={"/portfolios/" + _id} />  
       </Wrap>
     );
   }
-}
+}));
 const Wrap = styled.div<{ detail?: boolean }>`
   background: ${colors.primary};
   width: 100%;

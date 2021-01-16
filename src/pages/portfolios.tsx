@@ -7,7 +7,6 @@ function Portfolios({ match }: any) {
   const id = match.params.id;
   const [portfolios, setportfolios] = useState<any[]>([]);
   const [Searchdata, setSearchdata] = useState<any>();
-
   useEffect(() => {
     getData()
       .Getportfolio()
@@ -19,7 +18,6 @@ function Portfolios({ match }: any) {
         console.error(err);
       });
       console.log(portfolios[0]);
-    
   }, []);
 
   useEffect(() => {
@@ -35,6 +33,9 @@ function Portfolios({ match }: any) {
     }
   }, [match.params.id]);
 
+  // useEffect(() =>{
+  //   alert(window.localStorage.getItem("language"));
+  // },[window.localStorage.getItem("language")])
   return (
     <Layout>
       <Wrap>

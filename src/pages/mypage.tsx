@@ -10,62 +10,33 @@ import { useHistory } from "react-router-dom";
 function Mypage() {
   const History = useHistory();
   const { t } = useTranslation();
-  const [welcome, setwelcome] = useState({
-    kor: "안녕하세요 webfront개발자가 되기위해 노력하는 유명환이라고 합니다! 현제 react를 주력으로 하고 있고 node.js를 열심히 공부하고 있습니다.",
+  const [skills, setSkills] = useState([]);
+  const [portfolios, setPortfolios] = useState<
+    { _id: string; title: string }[]
+  >([]);
+  const [otherinformations, setotherinformations] = useState<
+    {
+      _id: string;
+      text: string;
+      adds: string;
+    }[]
+  >([]);
+  const [welcome, setwelcome] = useState<{
+    kor: string;
+    eng: string;
+  }>({
+    kor: "",
     eng: "",
   });
-  const [skills, setSkills] = useState([
-    {
-      id: 0,
-      text: "React-redux,mobx",
-    },
-    {
-      id: 1,
-      text: "React-redux,mobx",
-    },
-    {
-      id: 2,
-      text: "React-redux,mobx",
-    },
-  ]);
-  const [portfolio, setPortfolio] = useState([
-    {
-      id: 0,
-      text: "plantPlan (2020)",
-    },
-    {
-      id: 0,
-      text: "connecText (2020)",
-    },
-  ]);
-  const [otherinformation, setotherinformation] = useState([
-    {
-      id: 0,
-      text: "umh0811@naver.com",
-      adds:"",
-    },
-    {
-      id: 1,
-      text: "카카오톡 아이디: umh0811",
-      adds:"",
-    },
-    {
-      id: 2,
-      text: "Github",
-      adds: "https://github.com/famous0811"
-    },
-    {
-      id: 3,
-      text: "blog",
-      adds: "https://allblack0811.tistory.com/"
-    },
-  ]);
 
   useEffect(() => {
     getData()
       .GetInterduce()
       .then((data) => {
-        console.log(data);
+        setwelcome(data.wlecome);
+        setotherinformations(data.otherinformations);
+        setPortfolios(data.portfolios);
+        setSkills(data.skills);
       })
       .catch((err) => {
         console.log(err);
@@ -100,8 +71,17 @@ function Mypage() {
               <div className="nickname">{t("nickname")}</div>
               <div className="contents">2003.08.11</div>
               <div className="contents">{t("company")}</div>
-              {otherinformation.map((data) => (
-                <div key={data.id} className="contents" onClick={()=>{return data.adds!=="" ? window.location.href =data.adds : ""}} style={{cursor:"pointer"}}>
+              {otherinformations.map((data) => (
+                <div
+                  key={data._id}
+                  className="contents"
+                  onClick={() => {
+                    return data.adds !== ""
+                      ? (window.location.href = data.adds)
+                      : "";
+                  }}
+                  style={{ cursor: "pointer" }}
+                >
                   {data.text}
                 </div>
               ))}
@@ -118,8 +98,8 @@ function Mypage() {
             <div className="project">
               <h1>{t("project")}</h1>
               <ul>
-                {portfolio.map((data) => (
-                  <li key={data.id}>{data.text}</li>
+                {portfolios.map((data) => (
+                  <li key={data._id}>{data.title}</li>
                 ))}
               </ul>
             </div>
@@ -127,16 +107,14 @@ function Mypage() {
               <h1>{t("skills")}</h1>
               <ul>
                 {skills.map((data) => (
-                  <li key={data.id}>{data.text}</li>
+                  <li>{data}</li>
                 ))}
               </ul>
             </div>
           </div>
           <div className="interduce">
             <div className="title">{t("interduce")}</div>
-            <div className="content">
-              {welcome.kor}
-            </div>
+            <div className="content">{welcome.kor}</div>
           </div>
         </Maincontents>
         <ReviseButton>
