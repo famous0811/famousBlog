@@ -38,7 +38,7 @@ const Header = inject("language")((props: any) => {
 
   return (
     <Wrap>
-      <Title onClick={() => History.replace("/")}>{t("title")}</Title>
+      <Title onClick={() => History.replace("/famousBlog")}>{t("title")}</Title>
       <Menu>
         <ul>
           {menus.map((menu) => (

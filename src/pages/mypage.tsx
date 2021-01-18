@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/layout";
-import styled from "styled-components";
+import styled,{css} from "styled-components";
 import { useTranslation } from "react-i18next";
 
 import { Img } from "../Resources/img";
@@ -117,7 +117,7 @@ function Mypage() {
             <div className="content">{welcome.kor}</div>
           </div>
         </Maincontents>
-        <ReviseButton>
+        <ReviseButton admin={window.localStorage.getItem("admin")!=null}>
           <div onClick={() => History.replace("/adminwritemypages")}>✍</div>
         </ReviseButton>
       </Wrap>
@@ -255,7 +255,9 @@ const Profile = styled.div`
     font-size: 15px;
   }
 `;
-const ReviseButton = styled.div`
+const ReviseButton = styled.div<{admin: boolean}>`
+display:none;
+${({admin})=> admin && css`display:block;`}
   position: fixed;
   bottom: 6%;
   right: 3%;

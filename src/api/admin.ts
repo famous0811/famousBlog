@@ -11,7 +11,7 @@ export function Admin(){
         let data = await getClient
         .post('/admin/login',{id,password})
         .then((res) => {
-            // console.log(res.data.data);
+            console.log(res.data.data);
             window.localStorage.setItem('admin',res.data.data);
             window.location.replace("/write");
             return res.data;

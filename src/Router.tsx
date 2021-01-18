@@ -14,7 +14,7 @@ import Reviseportfolio from './pages/admin/Reviseportfolio';
 export default(
     <Router>
         <Switch>
-            <Route exact path="/" component={Home}/>
+            <Route exact path="/famousBlog" component={Home}/>
             <Route exact path="/mypage" component={Mypage}/>
             <Route exact path="/guestbook" component={Writed}/>
             <Route
@@ -27,6 +27,7 @@ export default(
             <Route exact path="/adminwritemypages" component={writemypages}/>
             <Route exact path="/adminReviseportfolio/:id" component={Reviseportfolio}/>
             <Route exact path="/write" component={Writepage}/>
+            <Route component={Home} />
         </Switch>
     </Router>
 );

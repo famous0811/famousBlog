@@ -22,6 +22,7 @@ export const resources = {
         "project":"Project",
         "skills":"skills",
         "interduce":"interduce",
+        "welcome":"세상에서 가장 유명한 남자 famous 유명환입니다!"
       }
     },
     kor: { // 한국어
@@ -43,6 +44,7 @@ export const resources = {
         "project":"프로젝트",
         "skills":"기술 스텍",
         "interduce":"자기소게",
+        "welcome":"세상에서 가장 유명한 남자 famous 유명환입니다!"
       }
     }
   }

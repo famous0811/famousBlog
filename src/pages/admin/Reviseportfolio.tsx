@@ -2,12 +2,21 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { getData } from "../../api/get";
-import {AdminActivity} from "../../api/admin";
+import {AdminActivity,Admin} from "../../api/admin";
 
 function Reviseportfolio({ match }: any) {
   const id = match.params.id;
   const [portfolio, setportfolio] = useState<any>();
   useEffect(() => {
+    Admin().AdminCheckToken().then(res=>{
+      if(res.data.result==="token is fail")
+      {
+          window.localStorage.clear();
+          window.location.replace("/");
+      }
+    }).catch(err=>{
+      console.log(err);
+    })
     getData()
       .GetDetailportfolio(id)
       .then((data) => {
