@@ -12,7 +12,7 @@ import SignUp from './pages/admin/signup';
 import writemypages from './pages/admin/writemypage';
 import Reviseportfolio from './pages/admin/Reviseportfolio';
 export default(
-    <Router>
+    <Router basename="/famousBlog">
         <Switch>
             <Route exact path="/famousBlog" component={Home}/>
             <Route exact path="/mypage" component={Mypage}/>
