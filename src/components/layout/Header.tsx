@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
 import colors from "../../Resources/constants/colors";
+import {Link} from "react-router-dom";
 
 const Header = inject("language")((props: any) => {
   const { t, i18n } = useTranslation();
@@ -43,7 +44,7 @@ const Header = inject("language")((props: any) => {
         <ul>
           {menus.map((menu) => (
             <li key={menu.id}>
-              <a href={menu.link} className={params===menu.link ? "clicked" : ""}>{t("menu" + menu.id)}</a>
+              <Link to={menu.link} className={params===menu.link ? "clicked" : ""}>{t("menu" + menu.id)}</Link>
             </li>
           ))}
         </ul>
